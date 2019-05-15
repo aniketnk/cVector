@@ -18,11 +18,15 @@ Example: `./foo`
 
 2. **destroy()**
 3. **assign()**
-    > Assign vector content  
+    > Assign vector content.  
     Protoype: `int *assign(int position, int value, vector_int *v, int *status);`
-    
+
 4. **size()**
+    > Return number of elements.
+
 5. **capacity()**
+    > Return size of allocated storage capacity.
+    
 6. **empty()**
 7. **at()**  
     > Access element.  
@@ -30,20 +34,30 @@ Example: `./foo`
     `int *at(int position, vector_int *v, int *status);`
 
 8. **front()**
-9. **back()**
+    > Access first element.  
+    Prototype: 
+    `int *front(vector_int *v, int *status);`
+
+9. **begin()**
+    > Return iterator to beginning.
+    Prototype:
+    `int begin(vector_int *v, int *status);`
+
+10. **back()**
+11. **end()**
 10. **data()**
 11. **push_back()**  
     > Add element at the end.  
     Protoype:
     `int *push_back(int element, vector_int *v, int *status);`
 
-12. **pop_back()**
-13. **insert()**
-14. **erase()**
-15. **swap()**
-16. **clear()**
-17. **sort()**
-18. **binary_search()**
+14. **pop_back()**
+15. **insert()**
+16. **erase()**
+17. **swap()**
+18. **clear()**
+19. **sort()**
+20. **binary_search()**
 
 ## Contributors
 - Aniket Kaulavkar 

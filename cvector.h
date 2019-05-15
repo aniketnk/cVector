@@ -2,24 +2,24 @@
  * A simple vector library in C
  * 
  * Functions to implement:
- * 1. init()
- * 2. destroy()
- * 3. assign()
- * 4. size()
- * 5. capacity()
- * 6. empty()
- * 7. at()
- * 8. front()
- * 9. back()
- * 10. data()
- * 11. push_back()
- * 12. pop_back()
- * 13. insert()
- * 14. erase()
- * 15. swap()
- * 16. clear()
- * 17. sort()
- * 18. binary_search()
+ * init() ✓
+ * destroy()
+ * assign() ✓
+ * size()
+ * capacity()
+ * empty()
+ * at() ✓
+ * front() ✓ and begin() ✓
+ * back() and end()
+ * data()
+ * push_back() ✓
+ * pop_back()
+ * insert()
+ * erase()
+ * swap()
+ * clear()
+ * sort()
+ * binary_search()
  * 
  */
 
@@ -32,5 +32,9 @@ typedef struct
 
 vector_int *vec_init(int size, int *status);
 int *at(int position, vector_int *v, int *status);
+int front(vector_int *v, int *status);
+int *begin(vector_int *v, int *status);
 int *assign(int position, int value, vector_int *v, int *status);
 int *push_back(int element, vector_int *v, int *status);
+int size(vector_int *v, int *status);
+int capacity(vector_int *v, int *status);

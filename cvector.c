@@ -26,10 +26,29 @@ int *at(int position, vector_int *v, int *status)
     if (position >= v->size || position < 0)
     {
         *status = 0; // status = 0 if index out of bounds
-        return 0;
+        return NULL;
     }
     *status = 1;
     return &(v->vec[position]);
+}
+
+int *begin(vector_int *v, int *status)
+{
+    /**
+     *   Returns an iterator pointing to the first element in the vector.
+     */
+    return (at(0, v, status));
+}
+
+int front(vector_int *v, int *status)
+{
+    /**
+     *  Returns the value of the first element in the vector.
+     */
+    int *res;
+    if ((res = begin(v, status)) != NULL)
+        return *res;
+    return 0;
 }
 
 int expand(int n, vector_int *v)
@@ -69,4 +88,32 @@ int *assign(int position, int value, vector_int *v, int *status)
         return &(v->vec[position]);
     }
     return NULL;
+}
+
+int size(vector_int *v, int *status)
+{
+    /**
+     *  Returns the number of elements in the vector.
+     */
+    if (v != NULL)
+    {
+        *status = 1;
+        return v->size;
+    }
+    *status = 0;
+    return -1;
+}
+
+int capacity(vector_int *v, int *status)
+{
+    /**
+     *  Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+     */
+    if (v != NULL)
+    {
+        *status = 1;
+        return v->size;
+    }
+    *status = 0;
+    return -1;
 }
