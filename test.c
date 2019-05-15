@@ -10,11 +10,12 @@ int main()
     push_back(3, vec_i, &status);
     printf((status) ? "success\n" : "fail\n");
 
-    int res = at(0, vec_i, &status);
-    printf((status) ? "%d\n" : "fail\n", res);
+    int *res;
+    res = at(0, vec_i, &status);
+    (status) ? printf("%p :%d\n", res, *res) : printf("fail\n");
     res = at(1, vec_i, &status);
-    printf((status) ? "%d\n" : "fail\n", res);
+    (status) ? printf("%p :%d\n", res, *res) : printf("fail\n");
     res = at(3, vec_i, &status);
-    printf((status) ? "%d\n" : "fail\n", res);
+    (status) ? printf("%p :%d\n", res, *res) : printf("fail\n");
     return 1;
 }
