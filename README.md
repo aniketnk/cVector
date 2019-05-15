@@ -11,17 +11,19 @@ Example: `./foo`
 ## Functions Implemented 
     (TODO: Update with more information)
 1. init()  
-    Initialize a vector
+    Construct vector
 2. destroy()
 3. assign()
 4. size()
 5. capacity()
 6. empty()
 7. at()
+    Access element
 8. front()
 9. back()
 10. data()
 11. push_back()
+    Add element at the end
 12. pop_back()
 13. insert()
 14. erase()
