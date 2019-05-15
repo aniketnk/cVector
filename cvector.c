@@ -39,7 +39,7 @@ int expand(int n, vector_int *v)
      */
     if (n > v->capacity && (v->vec = realloc(v->vec, n)) != NULL)
     {
-        v->capacity *= 2;
+        v->capacity = n;
         return 1;
     }
     return 0;
@@ -56,4 +56,17 @@ int *push_back(int element, vector_int *v, int *status)
     }
     v->vec[v->size++] = element;
     return &(v->vec[v->size]);
+}
+
+int *assign(int position, int value, vector_int *v, int *status)
+{
+    /**
+     *  Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
+     */
+    if (position <= v->size || (*status = expand(position + 1, v)) == 1)
+    {
+        v->vec[position] = value;
+        return &(v->vec[position]);
+    }
+    return NULL;
 }
