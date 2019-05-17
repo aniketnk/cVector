@@ -220,3 +220,19 @@ int *insert(int position, int value, vector_int *v, int *status)
     v->vec[position] = value;
     return &(v->vec[position]);
 }
+
+void swap(int i, int j, vector_int *v, int *status)
+{
+    /**
+     * Exchange values of two elements
+     */
+    if (i > size(v, status) || j > size(v, status))
+    {
+        *status = 0;
+        return;
+    }
+    int temp = v->vec[i];
+    v->vec[i] = v->vec[j];
+    v->vec[j] = temp;
+    return;
+}

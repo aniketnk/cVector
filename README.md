@@ -51,7 +51,7 @@ Example: `./foo`
     `int front(vector_int *v, int *status);`
 
 9. **begin()**
-    > Return iterator to beginning.
+    > Return iterator to beginning.  
     Prototype:
     `int *begin(vector_int *v, int *status);`
 
@@ -61,7 +61,7 @@ Example: `./foo`
     `int back(vector_int *v, int *status);`
 
 11. **end()**
-    > Return iterator to end.
+    > Return iterator to end.  
     Prototype:
     `int *end*(vector_int *v, int *status);`
 
@@ -82,6 +82,10 @@ Example: `./foo`
 
 15. **erase()**
 16. **swap()**
+    > Exchange values of two elements.  
+    Prototype:
+    `void swap(int i, int j, vector_int *v, int *status);`
+    
 17. **clear()**
     > Clear content.  
     Prototype:

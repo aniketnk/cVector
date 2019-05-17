@@ -16,7 +16,7 @@
  * pop_back() ✓
  * insert()
  * erase()
- * swap()
+ * swap() ✓
  * clear() ✓
  * sort()
  * binary_search()
@@ -44,4 +44,5 @@ int *end(vector_int *v, int *status);
 int *push_back(int element, vector_int *v, int *status);
 int pop_back(vector_int *v, int *status);
 int *insert(int position, int value, vector_int *v, int *status);
+void swap(int i, int j, vector_int *v, int *status);
 void clear(vector_int *v, int *status);
