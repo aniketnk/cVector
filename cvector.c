@@ -23,7 +23,7 @@ int *at(int position, vector_int *v, int *status)
     /**
      *  Returns a reference to the element at position n in the vector.
      */
-    if (position >= v->size || position < 0)
+    if (position > v->size || position < 0)
     {
         *status = 0; // status = 0 if index out of bounds
         return NULL;
@@ -51,6 +51,25 @@ int front(vector_int *v, int *status)
     return 0;
 }
 
+int *end(vector_int *v, int *status)
+{
+    /**
+     *   Returns an iterator pointing to the last element in the vector.
+     */
+    return (at(size(v, status), v, status));
+}
+
+int back(vector_int *v, int *status)
+{
+    /**
+     *  Returns the value of the last element in the vector.
+     */
+    int *res;
+    if ((res = end(v, status)) != NULL)
+        return *res;
+    return 0;
+}
+
 int expand(int n, vector_int *v)
 {
     /**
@@ -69,12 +88,7 @@ int *push_back(int element, vector_int *v, int *status)
     /**
      * Adds a new element at the end of the vector, after its current last element
      */
-    if (v->size + 1 >= v->capacity)
-    {
-        *status = expand(2 * v->capacity, v);
-    }
-    v->vec[v->size++] = element;
-    return &(v->vec[v->size]);
+    return (insert(size(v, status), element, v, status));
 }
 
 int *assign(int position, int value, vector_int *v, int *status)
@@ -85,6 +99,8 @@ int *assign(int position, int value, vector_int *v, int *status)
     if (position <= v->size || (*status = expand(position + 1, v)) == 1)
     {
         v->vec[position] = value;
+        if (position > v->size)
+            v->size = position;
         return &(v->vec[position]);
     }
     return NULL;
@@ -112,8 +128,95 @@ int capacity(vector_int *v, int *status)
     if (v != NULL)
     {
         *status = 1;
-        return v->size;
+        return v->capacity;
     }
     *status = 0;
     return -1;
+}
+
+int pop_back(vector_int *v, int *status)
+{
+    /**
+     *  Removes the last element in the vector, effectively reducing the container size by one.
+     */
+    if (size < 0)
+    {
+        *status = 0;
+        return 0;
+    }
+    *status = 1;
+    v->size -= 1;
+    return v->vec[v->size + 1];
+}
+
+int empty(vector_int *v, int *status)
+{
+    /**
+     *  Returns whether the vector is empty (i.e. whether its size is 0).
+     */
+    if (size(v, status) >= 1)
+        return 0;
+    return 1;
+}
+
+void destroy(vector_int *v, int *status)
+{
+    /**
+     *  Destroys the container object.
+     */
+    if (v != NULL)
+    {
+        int *vec = v->vec;
+        free(vec);
+        free(v);
+        *status = 1;
+        return;
+    }
+    *status = 0;
+    return;
+}
+
+void clear(vector_int *v, int *status)
+{
+    /**
+     *  Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
+     */
+    if (v != NULL)
+    {
+        int *vec = v->vec;
+        free(vec);
+        int originalCapacity = capacity(v, status);
+        v->size = 0;
+        v->capacity = 0;
+        *status = expand(originalCapacity, v);
+        return;
+    }
+    *status = 0;
+    return;
+}
+
+int *insert(int position, int value, vector_int *v, int *status)
+{
+    /**
+     * The vector is extended by inserting new elements before the element at the specified position, effectively increasing the container size by 1.
+     */
+    if (v == NULL)
+    {
+        *status = 0;
+        return NULL;
+    }
+    if (position > size(v, status))
+    {
+        return assign(position, value, v, status);
+    }
+    *status = 1;
+    if (size(v, status) + 1 > capacity(v, status))
+        *status = expand(2 * capacity(v, status), v);
+    for (int i = size(v, status); i > position; --i)
+    {
+        v->vec[i] = v->vec[i - 1];
+    }
+    v->size += 1;
+    v->vec[position] = value;
+    return &(v->vec[position]);
 }
